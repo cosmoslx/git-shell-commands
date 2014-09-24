@@ -17,10 +17,10 @@ Additions
 Git Account Create
 ------------------
 From the article, substitute "/srv/data/git" for whatever path holds git repos:
-useradd --create-home --skel /dev/null --home-dir /srv/data/git --shell /usr/bin/git-shell git
-chmod 750 /srv/data/git
-mkdir /srv/data/git/git-shell-commands
-Clone the repo to /srv/data/git/git-shell-commands
+* useradd --create-home --skel /dev/null --home-dir /srv/data/git --shell /usr/bin/git-shell git
+* chmod 750 /srv/data/git
+* mkdir /srv/data/git/git-shell-commands
+* Clone the repo to /srv/data/git/git-shell-commands
 
 Requirements
 ------------
