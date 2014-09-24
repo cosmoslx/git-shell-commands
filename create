@@ -1,0 +1,19 @@
+#!/bin/sh
+# If the user is not root
+if [ "$USERNAME" != "root" ]; then
+  # Dislpay a notice and stop
+  echo "Sorry, only root can use this command." exit 1
+  exit 1
+fi
+
+if [ $# -eq 0 ]; then
+  # Display a notice then stop
+  echo "Usage: create <project.git"
+  exit 1
+fi
+
+project=$(echo "$*" | sed 's/\.git$\|$/.git/i')
+
+# Create and initialise the project
+mkdir "$project" && \ cd "$project" && \ git --bare init
+
