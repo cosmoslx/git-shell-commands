@@ -22,7 +22,7 @@ if [ $(echo "$fingerprint" | egrep -c '(R|D)SA') -eq 0 ]; then
 fi
 
 # Add the key to the authorized_keys file and clean up
-mkir -p .ssh
+mkdir -p .ssh
 echo -n "no-agent-forwarding,no-port-forwarding,no-X11-forwarding " >> .ssh/authorized_keys
 cat $keyfile >> .ssh/authorized_keys
 rm $keyfile
