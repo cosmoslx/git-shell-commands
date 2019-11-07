@@ -1,10 +1,10 @@
 #!/bin/sh
 # If the user is not root
-if [ "$USERNAME" != "root" ]; then
-  # Dislpay a notice and stop
-  echo "Sorry, only root can use this command." exit 1
-  exit 1
-fi
+# if [ "$USERNAME" != "root" ]; then
+#   # Dislpay a notice and stop
+#   echo "Sorry, only root can use this command." exit 1
+#   exit 1
+# fi
 
 if [ $# -eq 0 ]; then
   # Display a notice then stop
