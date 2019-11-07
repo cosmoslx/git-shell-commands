@@ -1,19 +1,21 @@
 #!/bin/sh
 # If the user is not root
-if [ "$USERNAME" != "root" ]; then
-  # Dislpay a notice and stop
-  echo "Sorry, only root can use this command." exit 1
-  exit 1
-fi
+# if [ "$USERNAME" != "root" ]; then
+#   # Dislpay a notice and stop
+#   echo "Sorry, only root can use this command." exit 1
+#   exit 1
+# fi
 
 if [ $# -eq 0 ]; then
   # Display a notice then stop
-  echo "Usage: create <project.git"
+  echo "Usage: delete <repo_name>"
   exit 1
 fi
 
-project=$(echo "$*" | sed 's/\.git$\|$/.git/i')
+# Don't let "others" access the backups
+umask 0007
 
-# Remove the project directory
-rm -Rf "$project" 
-
+REPO_NAME=$(echo "$*" | sed 's/\.git$\|$/.git/i')
+echo "Removing repository $REPO_NAME"
+mkdir -p removed-repo-backups
+mv $REPO_NAME removed-repo-backups/$REPO_NAME-backup-`date +%s`

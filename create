@@ -8,12 +8,12 @@
 
 if [ $# -eq 0 ]; then
   # Display a notice then stop
-  echo "Usage: create <project.git"
+  echo "Usage: create <repo_name>"
   exit 1
 fi
 
-project=$(echo "$*" | sed 's/\.git$\|$/.git/i')
-
-# Create and initialise the project
-mkdir "$project" && \ cd "$project" && \ git --bare init
-
+# Don't let "others" access the new repository
+umask 0007
+REPO_NAME=$(echo "$*" | sed 's/\.git$\|$/.git/i')
+echo "Creating repository $REPO_NAME"
+git init --bare $REPO_NAME
