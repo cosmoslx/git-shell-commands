@@ -7,8 +7,8 @@
 # fi
 
 echo "Paste the SSH Public key to add:"; read key
-keyfile=$(tempfile) &&\
-  echo "$key" > $keyfile
+keyfile=$(tempfile)
+echo "$key" > $keyfile
 
 # Generate a fingerprint
 fingerprint=$(ssh-keygen -lf $keyfile)
@@ -22,12 +22,11 @@ if [ $(echo "$fingerprint" | egrep -c '(R|D)SA') -eq 0 ]; then
 fi
 
 # Add the key to the authorized_keys file and clean up
-mkir -p .ssh &&\
-echo -n "no-agent-forwarding,no-port-forwarding,no-X11-forwarding " >> .ssh/authorized_keys &&\
+mkir -p .ssh
+echo -n "no-agent-forwarding,no-port-forwarding,no-X11-forwarding " >> .ssh/authorized_keys
 cat $keyfile >> .ssh/authorized_keys
 rm $keyfile
 
 # Display the fingerprint for reference
 echo "Success! Added a key with this fingerprint: "
 echo $fingerprint
-
